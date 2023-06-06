@@ -7,7 +7,7 @@ function NotFound() {
     const handleClick = () => {
         navigate('/')
     }
-    const todoListGetter = alovaInstance.Get('/todo1')
+    const todoListGetter = alovaInstance.Get('/todo')
     const {
         // loading是加载状态值，当加载时它的值为true，结束后自动更新为false
         // 它的值为普通的boolean值，请求状态变化时内部将自动调用set函数更新它的值

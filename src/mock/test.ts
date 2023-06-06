@@ -3,7 +3,7 @@ import { defineMock } from '@alova/mock'
 export default defineMock(
     {
         // 捕获get请求
-        '/todo': () => {
+        '/api/todo': () => {
             return {
                 data: [
                     {
