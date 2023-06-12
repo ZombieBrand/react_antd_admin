@@ -1,10 +1,12 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
-import { LoginForm, ProFormCheckbox, ProFormText, ProConfigProvider } from '@ant-design/pro-components'
-
+import { LoginForm, ProFormText, ProConfigProvider } from '@ant-design/pro-components'
+import { useDarkMode } from '@/hook'
 const Login = () => {
+    const isDarkMode = useDarkMode()
+    const backgroundColor = isDarkMode ? '#252525' : 'white'
     return (
         <ProConfigProvider hashed={false}>
-            <div style={{ backgroundColor: 'white' }}>
+            <div style={{ backgroundColor }}>
                 <LoginForm
                     logo='https://github.githubassets.com/images/modules/logos_page/Octocat.png'
                     title='Github'
@@ -40,22 +42,6 @@ const Login = () => {
                             ]}
                         />
                     </>
-                    <div
-                        style={{
-                            marginBlockEnd: 24
-                        }}
-                    >
-                        <ProFormCheckbox noStyle name='autoLogin'>
-                            自动登录
-                        </ProFormCheckbox>
-                        <a
-                            style={{
-                                float: 'right'
-                            }}
-                        >
-                            忘记密码
-                        </a>
-                    </div>
                 </LoginForm>
             </div>
         </ProConfigProvider>

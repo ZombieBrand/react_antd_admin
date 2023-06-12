@@ -4,7 +4,7 @@ import defineMock from './test'
 
 const mockAdapter = createAlovaMockAdapter([defineMock], {
     // 全局控制是否启用mock接口，默认为true
-    enable: true,
+    enable: import.meta.env.VITE_USE_MOCK,
     // 非模拟请求适配器，用于未匹配mock接口时发送请求
     httpAdapter: axiosRequestAdapter(),
 

@@ -4,14 +4,14 @@ import ReactHook from 'alova/react'
 import mockAdapter from '@/mock'
 import { AxiosError, AxiosRequestConfig } from 'axios'
 import { message } from 'antd'
-import { getTokenAUTH } from '@/utils/auth'
+import { getTokenAUTH, getToken } from '@/utils/auth'
 // 1. 创建alova实例
 const alovaInstance = createAlova({
-    baseURL: '/api',
+    baseURL: import.meta.env.VITE_BASE_API,
     statesHook: ReactHook,
     requestAdapter: import.meta.env.DEV ? mockAdapter : axiosRequestAdapter(),
     beforeRequest(method) {
-        const token = localStorage.getItem('token')
+        const token = getToken()
         const Icode = 'E9AA11C07ECACB53'
         method.config.headers.Icode = Icode
         if (token) {
