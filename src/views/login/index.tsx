@@ -1,7 +1,7 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
 import { Button, Card, Form, Input } from 'antd'
 import { useDarkMode } from '@/hook'
-import './index.less'
+import styles from './index.module.less'
 
 const Login = () => {
     const isDarkMode = useDarkMode()
@@ -10,9 +10,9 @@ const Login = () => {
         console.log('Received values of form: ', values)
     }
     return (
-        <div className='login' style={{ backgroundColor }}>
-            <Card className='login-wrapper'>
-                <h2 className='login-title'>Ant Design Admin</h2>
+        <div className={styles.login} style={{ backgroundColor }}>
+            <Card className={styles.loginWrapper}>
+                <h2 className={styles.loginTitle}>Ant Design Admin</h2>
                 <Form name='login' initialValues={{ remember: true }} onFinish={onFinish} autoComplete='off'>
                     <Form.Item name='username' rules={[{ required: true, message: '请输入您的用户名' }]}>
                         <Input prefix={<UserOutlined className='site-form-item-icon' />} />
