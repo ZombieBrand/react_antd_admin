@@ -16,3 +16,5 @@ const mockAdapter = createAlovaMockAdapter([defineMock], {
     ...axiosMockResponse
 })
 export default mockAdapter
+
+export const mockApi = import.meta.env.VITE_USE_MOCK

@@ -1,6 +1,6 @@
 import { defineMock } from '@alova/mock'
-
 const mockApi = import.meta.env.VITE_USE_MOCK
+
 export default defineMock(
     {
         // 捕获get请求

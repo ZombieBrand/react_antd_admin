@@ -2,12 +2,15 @@ import { createAlova } from 'alova'
 import { axiosRequestAdapter } from '@alova/adapter-axios'
 import ReactHook from 'alova/react'
 import mockAdapter from '@/mock'
+import { message } from '@/utils/AntdGlobal'
 import { AxiosError, AxiosRequestConfig } from 'axios'
-import { message } from 'antd'
 import { getTokenAUTH, getToken } from '@/utils/auth'
+import storage from '@/utils/storage'
+
 // 1. 创建alova实例
+const baseURL = import.meta.env.VITE_BASE_API
 const alovaInstance = createAlova({
-    baseURL: import.meta.env.VITE_BASE_API,
+    baseURL,
     statesHook: ReactHook,
     requestAdapter: import.meta.env.DEV ? mockAdapter : axiosRequestAdapter(),
     beforeRequest(method) {
@@ -25,7 +28,7 @@ const alovaInstance = createAlova({
             const data = response.data
             if (data.code === 500_001) {
                 message.error(data.msg)
-                localStorage.removeItem('token')
+                storage.remove('token')
                 // location.href = '/login'
             }
             if (data.code !== 0) {
