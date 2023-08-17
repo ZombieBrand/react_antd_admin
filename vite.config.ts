@@ -1,20 +1,17 @@
 import { defineConfig } from 'vite'
 import react from '@vitejs/plugin-react'
-import path from 'path'
+import { resolve } from 'path'
 
-// https://vitejs.dev/config/
 export default defineConfig({
-    plugins: [react()],
-    resolve: {
-        alias: {
-            '@': path.resolve(__dirname, './src')
-        }
-    },
-    server: {
-        host: 'localhost',
-        port: 8089,
-        proxy: {
-            '/api': 'http://api-driver.marsview.cc'
-        }
+  resolve: {
+    alias: {
+      '@': resolve(__dirname, 'src'),
+      '@views': resolve(__dirname, 'src', 'views'),
+      '@components': resolve(__dirname, 'src', 'components'),
+      '@stores': resolve(__dirname, 'src', 'stores'),
+      '@api': resolve(__dirname, 'src', 'api'),
+      '@utils': resolve(__dirname, 'src', 'utils')
     }
+  },
+  plugins: [react()]
 })

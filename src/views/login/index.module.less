@@ -1,41 +1,21 @@
 .login {
-    height: 100vh;
-    width: 100vw;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    background: linear-gradient(
-        -45deg,
-        rgba(238, 119, 82, 0.5),
-        rgba(231, 60, 126, 0.5),
-        rgba(231, 60, 126, 0.5),
-        rgb(35, 213, 171, 0.5)
-    );
-    background-size: 400% 400%;
-    animation: gradient 15s ease infinite;
-    .loginWrapper {
-        width: 340px;
-        backdrop-filter: blur(16px) saturate(180%);
-        -webkit-backdrop-filter: blur(16px) saturate(180%);
-        background-color: rgba(255, 255, 255, 0.85);
-        border-radius: 12px;
-        border: 1px solid rgba(209, 213, 219, 0.3);
-        .loginTitle {
-            text-align: center;
-        }
-        &.dark {
-            background-color: rgba(0, 0, 0, 0.85);
-        }
-    }
+  height: 100vh;
+  background: url(/imgs/login_bg.jpeg) no-repeat;
+  background-size: cover;
+  background-position: center;
 }
-@keyframes gradient {
-    0% {
-        background-position: 0% 50%;
-    }
-    50% {
-        background-position: 100% 50%;
-    }
-    100% {
-        background-position: 0% 50%;
-    }
+.title {
+  font-size: 42px;
+  line-height: 1.5;
+  text-align: center;
+  margin-bottom: 30px;
+}
+.loginWrapper {
+  background-color: #fff;
+  position: absolute;
+  top: 50%;
+  right: 10%;
+  width: 500px;
+  transform: translateY(-50%);
+  padding: 50px;
 }

@@ -1,21 +1,27 @@
 import { RouterProvider } from 'react-router-dom'
-import router from '@/router/index'
-import './App.css'
 import { ConfigProvider, App as AntdApp, theme } from 'antd'
-import { useDarkMode } from '@/hook'
-import zhCN from 'antd/locale/zh_CN'
+import router from './router'
 import AntdGlobal from './utils/AntdGlobal'
-
+import './App.less'
+import './styles/theme.less'
+import { useStore } from './store'
 function App() {
-    const isDarkMode = useDarkMode()
-    return (
-        <ConfigProvider theme={{ algorithm: isDarkMode ? theme.darkAlgorithm : theme.defaultAlgorithm }} locale={zhCN}>
-            <AntdApp>
-                <AntdGlobal />
-                <RouterProvider router={router} />
-            </AntdApp>
-        </ConfigProvider>
-    )
+  const isDark = useStore(state => state.isDark)
+  return (
+    <ConfigProvider
+      theme={{
+        token: {
+          colorPrimary: '#ed6c00'
+        },
+        algorithm: isDark ? theme.darkAlgorithm : theme.defaultAlgorithm
+      }}
+    >
+      <AntdApp>
+        <AntdGlobal />
+        <RouterProvider router={router} />
+      </AntdApp>
+    </ConfigProvider>
+  )
 }
 
 export default App

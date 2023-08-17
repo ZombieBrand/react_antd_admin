@@ -1,36 +1,41 @@
+/**
+ * localStorage模块封装
+ */
+
 export default {
-    /**
-     * @description 设置localStorage
-     * @param key {string}
-     * @param value {unknown}
-     */
-    set(key: string, value: unknown) {
-        localStorage.setItem(key, JSON.stringify(value))
-    },
-    /**
-     * @description 获取localStorage
-     * @param key {string}
-     */
-    get(key: string) {
-        const value = localStorage.getItem(key)
-        if (!value) return ''
-        try {
-            return JSON.parse(value)
-        } catch (error) {
-            return value
-        }
-    },
-    /**
-     * @description 删除localStorage
-     * @param key {string}
-     */
-    remove(key: string) {
-        localStorage.removeItem(key)
-    },
-    /**
-     * @description 清空localStorage
-     */
-    clear() {
-        localStorage.clear()
+  /**
+   * storage存储
+   * @param key {string} 参数名称
+   * @param value {any} 写入值
+   */
+  set(key: string, value: any) {
+    localStorage.setItem(key, JSON.stringify(value))
+  },
+  /**
+   * storage读取
+   * @param key {string} 参数名称
+   * @returns storage值
+   */
+  get(key: string) {
+    const value = localStorage.getItem(key)
+    if (!value) return ''
+    try {
+      return JSON.parse(value)
+    } catch (error) {
+      return value
     }
+  },
+  /**
+   * 删除localStorage值
+   * @param key {string} 参数名称
+   */
+  remove(key: string) {
+    localStorage.removeItem(key)
+  },
+  /**
+   * 清空localStorage值
+   */
+  clear() {
+    localStorage.clear()
+  }
 }

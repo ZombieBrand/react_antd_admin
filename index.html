@@ -1,88 +1,13 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-
-<head>
+  <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/vite.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vite + React + TS</title>
-    <style>
-        #initialize-loading {
-            position: fixed;
-            top: 0;
-            left: 0;
-            bottom: 0;
-            right: 0;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            background-color: white;
-            font-size: 20px;
-        }
-
-        .dots {
-            width: 4em;
-            height: 4em;
-            display: grid;
-            grid-template-rows: repeat(3, 1fr);
-            grid-template-columns: repeat(3, 1fr);
-            justify-items: center;
-            align-items: center;
-        }
-
-        .dots>div {
-            width: 0.8em;
-            height: 0.8em;
-            background-color: #1578ff;
-            border-radius: 50%;
-            animation: fade 1.5s alternate ease-in-out infinite;
-        }
-
-        .dots>div:nth-of-type(2),
-        .dots>div:nth-of-type(4) {
-            animation-delay: 0.25s;
-        }
-
-        .dots>div:nth-of-type(3),
-        .dots>div:nth-of-type(5),
-        .dots>div:nth-of-type(7) {
-            animation-delay: 0.5s;
-        }
-
-        .dots>div:nth-of-type(6),
-        .dots>div:nth-of-type(8) {
-            animation-delay: 0.75s;
-        }
-
-        .dots>div:nth-of-type(9) {
-            animation-delay: 1s;
-        }
-
-        @keyframes fade {
-            to {
-                opacity: 0.2;
-            }
-        }
-    </style>
-</head>
-
-<body>
+  </head>
+  <body>
     <div id="root"></div>
-    <div id="initialize-loading">
-        <div class="dots">
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-            <div></div>
-        </div>
-    </div>
     <script type="module" src="/src/main.tsx"></script>
-</body>
-
+  </body>
 </html>

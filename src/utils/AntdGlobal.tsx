@@ -1,3 +1,4 @@
+// Entry component
 import { App } from 'antd'
 import type { MessageInstance } from 'antd/es/message/interface'
 import type { ModalStaticFunctions } from 'antd/es/modal/confirm'
@@ -8,11 +9,11 @@ let notification: NotificationInstance
 let modal: Omit<ModalStaticFunctions, 'warn'>
 
 export default () => {
-    const staticFunction = App.useApp()
-    message = staticFunction.message
-    modal = staticFunction.modal
-    notification = staticFunction.notification
-    return null
+  const staticFunction = App.useApp()
+  message = staticFunction.message
+  modal = staticFunction.modal
+  notification = staticFunction.notification
+  return null
 }
 
 export { message, notification, modal }
