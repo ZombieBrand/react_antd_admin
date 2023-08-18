@@ -1,4 +1,4 @@
-import './loading.less'
+import './loading.css'
 let count = 0
 
 export const showLoading = () => {

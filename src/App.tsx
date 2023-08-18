@@ -1,12 +1,11 @@
 import { RouterProvider } from 'react-router-dom'
 import { ConfigProvider, App as AntdApp, theme } from 'antd'
-import router from './router'
+import router from '@/router/index'
 import AntdGlobal from './utils/AntdGlobal'
-import './App.less'
-import './styles/theme.less'
+import './App.css'
 import { useStore } from './store'
 function App() {
-  const isDark = useStore(state => state.isDark)
+  const isDark = useStore((state) => state.isDark)
   return (
     <ConfigProvider
       theme={{
