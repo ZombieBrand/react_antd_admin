@@ -11,7 +11,7 @@ export const useStore = create<{
   updateUserInfo: (userInfo: User.UserItem) => void
   updateCollapsed: () => void
   updateTheme: (isDark: boolean) => void
-}>(set => ({
+}>((set) => ({
   token: '',
   userInfo: {
     _id: '',
@@ -30,11 +30,11 @@ export const useStore = create<{
   },
   collapsed: false,
   isDark: storage.get('isDark') || false,
-  updateToken: token => set({ token }),
-  updateTheme: isDark => set({ isDark }),
+  updateToken: (token) => set({ token }),
+  updateTheme: (isDark) => set({ isDark }),
   updateUserInfo: (userInfo: User.UserItem) => set({ userInfo }),
   updateCollapsed: () =>
-    set(state => {
+    set((state) => {
       return {
         collapsed: !state.collapsed
       }

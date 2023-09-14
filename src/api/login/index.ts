@@ -1,2 +1,9 @@
 import http from '@/api/index'
-export const loginApi = (loginData: { name: string; pw: string }) => http.Post('/login', loginData)
+import { IMethodMeta } from '@/types/api/basics'
+import { ILoginApi, ILoginData } from '@/types/api/login'
+
+export const loginApi = (loginData: ILoginData, meta?: IMethodMeta) => {
+  const methodInstance = http.Post<ILoginApi>('/login', loginData)
+  methodInstance.meta = meta
+  return methodInstance
+}
