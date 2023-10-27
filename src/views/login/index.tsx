@@ -5,7 +5,7 @@ import { useDarkMode } from '@/hook/useDarkMode'
 import { Card, Form, Input, Button } from 'antd'
 import { message } from '@/utils/AntdGlobal'
 import storage from '@/utils/storage'
-import './index.css'
+import styles from './index.module.css'
 import { ILoginData } from '@/types/api/login'
 const Login = () => {
   const isDarkMode = useDarkMode()
@@ -29,9 +29,9 @@ const Login = () => {
   }
 
   return (
-    <div className="login" style={{ backgroundColor }}>
-      <Card className="login-wrapper">
-        <h2 className="login-title">Ant Design Admin</h2>
+    <div className={styles.login} style={{ backgroundColor }}>
+      <Card className={styles.loginWrapper}>
+        <h2 className={styles.loginTitle}>Ant Design Admin</h2>
         <Form name="login" initialValues={loginFormData} onFinish={onFinish} autoComplete="off">
           <Form.Item name="userName" rules={[{ required: true, message: '请输入您的用户名' }]}>
             <Input prefix={<UserOutlined className="site-form-item-icon" />} />

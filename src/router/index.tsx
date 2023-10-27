@@ -4,11 +4,11 @@ import Error403 from '@/views/403'
 import Error404 from '@/views/404'
 import ErrorPage from '@/views/error'
 import Layout from '@/layout'
-
+import Home from '@/views/home/'
 export const router = [
   {
     path: '/',
-    element: <Navigate to="/welcome" />,
+    element: <Navigate to="/home" />,
     errorElement: <ErrorPage />
   },
   {
@@ -19,8 +19,8 @@ export const router = [
     element: <Layout />,
     children: [
       {
-        path: '/welcome',
-        element: <div>欢迎页</div>
+        path: '/home',
+        element: <Home />
       }
     ]
   },
