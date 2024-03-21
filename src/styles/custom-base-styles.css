@@ -1,18 +1,18 @@
 @layer base {
-    * {
-        box-sizing: border-box;
-    }
+  * {
+    box-sizing: border-box;
+  }
 
-    html {
-        line-height: 1.15;
-        -webkit-text-size-adjust: 100%;
-    }
+  html {
+    line-height: 1.15;
+    -webkit-text-size-adjust: 100%;
+  }
 
-    body {
-        margin: 0;
-    }
+  body {
+    margin: 0;
+  }
 
-    main {
-        display: block;
-    }
+  main {
+    display: block;
+  }
 }
