@@ -5,6 +5,7 @@ import dayjs from 'dayjs'
 const { dependencies, devDependencies, name, version } = pkg
 import { createVitePlugins } from './build/plugins'
 import { createProxy } from './build/proxy'
+import { parseLoadedEnv } from 'vite-plugin-env-parse'
 // package.json 的配置文件信息dependencies
 // 最后一次打包时间
 const __APP_INFO__ = {
@@ -14,13 +15,15 @@ const __APP_INFO__ = {
 
 // https://vitejs.dev/config/
 export default defineConfig(({ command, mode }) => {
-  const env = loadEnv(mode, process.cwd())
+  const env = parseLoadedEnv(loadEnv(mode, process.cwd()))
   const isBuild = command === 'build'
-  console.log('env:-----', env, command)
+  //   console.log('[ createProxy ] >', createProxy(env.VITE_PROXY))
+  //   console.log('[ env ] >', env)
   return {
     server: {
       host: true,
       port: 8003,
+      open: true,
       proxy: createProxy(env.VITE_PROXY)
     },
     resolve: {
@@ -29,7 +32,7 @@ export default defineConfig(({ command, mode }) => {
       }
     },
     esbuild: {
-      drop: env.VITE_DROP_CONSOLE === 'true' ? ['console', 'debugger'] : []
+      drop: env.VITE_DROP_CONSOLE ? ['console', 'debugger'] : []
     },
     css: {
       // 开css sourcemap方便找css

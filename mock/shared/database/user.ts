@@ -1,10 +1,10 @@
 export const userMap = {
   Mark: {
-    name: "Mark",
-    age: 20,
+    name: 'Mark',
+    age: 20
   },
   John: {
-    name: "John",
-    age: 21,
-  },
-};
+    name: 'John',
+    age: 21
+  }
+}

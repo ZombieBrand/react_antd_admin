@@ -1,10 +1,20 @@
+import { RouterProvider } from 'react-router-dom'
+import { ConfigProvider, App as AntdApp } from 'antd'
+import router from '@/router/index'
 import './App.css'
+import request from './utils/request'
 
 function App() {
+  request.post('/user/info', {
+    name: 'Mark',
+    password: '123456'
+  })
   return (
-    <>
-      <h1 className='text-3xl font-bold underline'>Hello world!</h1>
-    </>
+    <ConfigProvider>
+      <AntdApp>
+        <RouterProvider router={router} />
+      </AntdApp>
+    </ConfigProvider>
   )
 }
 

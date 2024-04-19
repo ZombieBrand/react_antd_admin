@@ -5,7 +5,7 @@ export default {
     extend: {}
   },
   important: true,
-  darkMode: 'class',
+  darkMode: 'selector',
   plugins: [],
   corePlugins: {
     preflight: false

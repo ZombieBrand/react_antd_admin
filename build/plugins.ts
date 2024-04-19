@@ -4,9 +4,10 @@ import { imagetools } from 'vite-imagetools'
 import viteImagemin from 'vite-plugin-imagemin'
 import mockDevServerPlugin from 'vite-plugin-mock-dev-server'
 import svgr from 'vite-plugin-svgr'
+import { envParse } from 'vite-plugin-env-parse'
 export function createVitePlugins(viteEnv: Record<string, string>, isBuild: boolean) {
   const { VITE_USER_NODE_ENV, VITE_USE_MOCK } = viteEnv
-  const vitePlugins: (PluginOption | PluginOption[])[] = [react(), imagetools(), viteImagemin(), svgr()]
+  const vitePlugins: (PluginOption | PluginOption[])[] = [react(), imagetools(), viteImagemin(), svgr(), envParse()]
   if (VITE_USE_MOCK) {
     vitePlugins.push(mockDevServerPlugin())
   }

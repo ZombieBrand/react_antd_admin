@@ -1,2 +1,5 @@
 @layer components {
+  .login-wrapper {
+    @apply absolute inset-0 -z-10 flex size-full h-screen w-screen items-center justify-center bg-white bg-[linear-gradient(to_right,#f0f0f0_1px,transparent_1px),linear-gradient(to_bottom,#f0f0f0_1px,transparent_1px)] bg-[size:6rem_4rem] before:absolute before:inset-0 before:bg-[radial-gradient(circle_28vw_at_50%_50%,#C9EBFF,transparent)] before:content-[''] dark:bg-slate-900 dark:bg-[linear-gradient(to_right,rgba(0,109,117,0.3)_1px,transparent_1px),linear-gradient(to_bottom,rgba(0,109,117,0.3)_1px,transparent_1px)] before:dark:bg-[radial-gradient(circle_28vw_at_50%_50%,#006d75,transparent)];
+  }
 }
