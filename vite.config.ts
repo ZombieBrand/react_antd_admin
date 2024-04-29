@@ -24,7 +24,7 @@ export default defineConfig(({ command, mode }) => {
       host: true,
       port: 8003,
       open: true,
-      proxy: createProxy(env.VITE_PROXY)
+      proxy: isBuild ? {} : createProxy(env.VITE_PROXY)
     },
     resolve: {
       alias: {

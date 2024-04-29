@@ -2,6 +2,8 @@
 
 [![My Skills](https://skillicons.dev/icons?i=ts,vite,react,tailwind)](https://skillicons.dev)
 
+<img src="public/React.png" alt="React" style="zoom:10%;" /><img src="public/Tailwindcss6.png" alt="Tailwindcss6" style="zoom:10%;" /><img src="public/HTML.png" alt="HTML" style="zoom:10%;" /><img src="public/Vite.png" alt="Vite" style="zoom:10%;" /><img src="public/TypeScript.png" alt="TypeScript" style="zoom:10%;" />
+
 ## 介绍
 
 一个初始的Vite模板:

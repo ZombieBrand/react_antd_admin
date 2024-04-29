@@ -17,6 +17,7 @@ const wsRE = /^(ws|wss):\/\//
  * @param list
  */
 export function createProxy(list: ProxyList) {
+  if (!list) return {}
   const ret: ProxyTargetList = {}
   for (const [prefix, target] of list) {
     const isHttps = httpsRE.test(target)

@@ -1,17 +1,31 @@
+import { useState } from 'react'
 import { RouterProvider } from 'react-router-dom'
-import { ConfigProvider, App as AntdApp } from 'antd'
+import { ConfigProvider, App as AntdApp, theme } from 'antd'
+import AntdGlobal from './utils/AntdGlobal'
+import { Toaster } from 'react-hot-toast'
 import router from '@/router/index'
 import './App.css'
-import request from './utils/request'
+import { useDarkMode } from '@/hook/useDarkMode'
 
 function App() {
-  request.post('/user/info', {
-    name: 'Mark',
-    password: '123456'
-  })
+  const isDark = useDarkMode()
+  const [primary] = useState('#1677FF')
   return (
-    <ConfigProvider>
+    <ConfigProvider
+      theme={{
+        algorithm: isDark ? theme.darkAlgorithm : theme.defaultAlgorithm,
+        token: {
+          colorPrimary: primary
+        }
+      }}
+    >
       <AntdApp>
+        <Toaster
+          toastOptions={{
+            className: 'dark:bg-slate-800 dark:text-white'
+          }}
+        />
+        <AntdGlobal />
         <RouterProvider router={router} />
       </AntdApp>
     </ConfigProvider>

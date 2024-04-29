@@ -2,7 +2,10 @@ import { LockOutlined, UserOutlined } from '@ant-design/icons'
 import { useDarkMode } from '@/hook/useDarkMode'
 import { Card, Form, Input, Button } from 'antd'
 import { message } from '@/utils/AntdGlobal'
-
+import { loginApi } from '@/api/users/login'
+import { useRequest } from 'ahooks'
+import { ILoginParams } from '@/types/api'
+import toast from 'react-hot-toast'
 const Login = () => {
   const isDarkMode = useDarkMode()
   console.log(isDarkMode, 'isDarkMode')
@@ -10,8 +13,22 @@ const Login = () => {
     userName: '562168176',
     userPwd: '123456'
   }
-  const onFinish = async () => {
-    message.success('登录成功')
+  const { loading, run } = useRequest(loginApi, {
+    manual: true,
+    onSuccess: (result, params) => {
+      console.log(result, 'result', params, 'params')
+      toast('登录成功')
+      message.success('登录成功!')
+      const urlParams = new URLSearchParams(location.search)
+      location.href = urlParams.get('redirect') || '/'
+    },
+    onError: error => {
+      console.log('%c [ error ]-24', 'font-size:13px; background:#cf1322; color:#ffef50;', JSON.stringify(error))
+    }
+  })
+  const onFinish = async (values: ILoginParams) => {
+    console.log('%c [ values ]-14', 'font-size:13px; background:#5713f9; color:#9b57ff;', JSON.stringify(values))
+    run(values)
   }
 
   return (
@@ -26,7 +43,7 @@ const Login = () => {
             <Input prefix={<LockOutlined className='site-form-item-icon' />} type='password' />
           </Form.Item>
           <Form.Item>
-            <Button size='large' style={{ width: '100%' }} type='primary' htmlType='submit'>
+            <Button size='large' style={{ width: '100%' }} type='primary' htmlType='submit' loading={loading}>
               登录
             </Button>
           </Form.Item>

@@ -2,11 +2,11 @@ import { Watermark } from 'antd'
 import MyLayout from '@/layout/Layout'
 import layoutSetting from '@/config/layout'
 const App: React.FC = () => {
-  const { watermark } = layoutSetting()
+  const { watermark, watermarkContent } = layoutSetting()
 
   if (watermark) {
     return (
-      <Watermark content='react_admin'>
+      <Watermark content={watermarkContent}>
         <MyLayout />
       </Watermark>
     )

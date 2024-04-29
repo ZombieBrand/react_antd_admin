@@ -3,7 +3,8 @@ import urlJoin from 'url-join'
 import { showLoading, hideLoading } from './loading'
 import { createStorage } from './storage'
 import { Result } from '@/types/api'
-import { message } from './AntdGlobal'
+import toast from 'react-hot-toast'
+import { IMessageType } from '@/constant/message'
 
 const storage = createStorage({ prefixKey: 'admin_', storage: sessionStorage })
 const env = import.meta.env
@@ -16,7 +17,8 @@ const instance = axios.create({
   timeoutErrorMessage: '请求超时，请稍后再试',
   withCredentials: true,
   headers: {
-    icode: '62E7F26B798EFABE'
+    icode: '62E7F26B798EFABE',
+    'Content-Type': 'application/json;charset=utf-8'
   }
 })
 
@@ -42,16 +44,21 @@ instance.interceptors.response.use(
   response => {
     const data: Result = response.data
     hideLoading()
-    if (response.config.responseType === 'blob') return response
+    const config = response.config
+    if (config.responseType === 'blob') return response
     if (data.code === 500001) {
-      message.error(data.message)
+      toast.error(data.message, {
+        id: IMessageType.GLOBAL_ERROR
+      })
       storage.remove('token')
-      location.href = '/login?callback=' + encodeURIComponent(location.href)
+      location.href = '/login?redirect=' + encodeURIComponent(location.href)
     } else if (data.code != 0) {
-      if (response.config.showError === false) {
+      if (config.showError === false) {
         return Promise.resolve(data)
       } else {
-        message.error(data.message)
+        toast.error(data.message, {
+          id: IMessageType.GLOBAL_ERROR
+        })
         return Promise.reject(data)
       }
     }
@@ -60,7 +67,9 @@ instance.interceptors.response.use(
   error => {
     console.log('%c [ HTTP_ERROR ]', 'font-size:13px; background:#5c0011; color:#fff1f0;', JSON.stringify(error))
     hideLoading()
-    message.error(error.message)
+    toast.error(error.message, {
+      id: IMessageType.GLOBAL_ERROR
+    })
     return Promise.reject(error.message)
   }
 )

@@ -31,10 +31,10 @@
         }
     },
     "include": [
-        "src",
-        "mock",
+        "src/**/*",
         "env.d.ts",
-        "test"
+        "test",
+        "mock"
     ],
     "references": [
         {

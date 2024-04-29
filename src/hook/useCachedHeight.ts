@@ -7,7 +7,7 @@ function useCachedHeight(ref: React.RefObject<HTMLDivElement>) {
     if (!ref.current) {
       return
     }
-    const observer = new ResizeObserver((entries) => {
+    const observer = new ResizeObserver(entries => {
       for (const entry of entries) {
         setHeight(entry.contentRect.height)
       }

@@ -1,7 +1,6 @@
-import { Avatar, Col, Dropdown, MenuProps, Row, Space } from 'antd'
-import ThemeSwitch from './ThemeSwitch'
+import { Avatar, Dropdown, MenuProps, Space, Flex } from 'antd'
 import { DownOutlined, LogoutOutlined, UserOutlined, SettingOutlined } from '@ant-design/icons'
-
+import NightToggleButton from '@/components/NightToggleButton'
 import { message } from '@/utils/AntdGlobal'
 const items: MenuProps['items'] = [
   {
@@ -24,19 +23,18 @@ export default function NavHeader() {
 
   return (
     <div className='px-4'>
-      <Row justify='end' align='middle'>
-        <Col className='flex items-center'>
-          <ThemeSwitch />
-        </Col>
-        <Col>
+      <Flex align='center' justify='space-between'>
+        <Space align='baseline'></Space>
+        <Space align='baseline'>
+          <NightToggleButton />
           <Dropdown menu={{ items, onClick }} placement='bottomLeft' arrow>
             <Space className='cursor-pointer'>
               <Avatar icon={<UserOutlined />} />
               <DownOutlined />
             </Space>
           </Dropdown>
-        </Col>
-      </Row>
+        </Space>
+      </Flex>
     </div>
   )
 }
