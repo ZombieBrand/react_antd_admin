@@ -1,14 +1,15 @@
 import { LockOutlined, UserOutlined } from '@ant-design/icons'
-import { useDarkMode } from '@/hook/useDarkMode'
 import { Card, Form, Input, Button } from 'antd'
-import { message } from '@/utils/AntdGlobal'
 import { loginApi } from '@/api/users/login'
 import { useRequest } from 'ahooks'
-import { ILoginParams } from '@/types/api'
+import { ILoginParams } from '@/types/api/api'
 import toast from 'react-hot-toast'
+import { useNavigate } from 'react-router-dom'
+import { useUserStore } from '@/store/modules/user'
+
 const Login = () => {
-  const isDarkMode = useDarkMode()
-  console.log(isDarkMode, 'isDarkMode')
+  const setToken = useUserStore(state => state.updateToken)
+  const navigate = useNavigate()
   const loginFormData = {
     userName: '562168176',
     userPwd: '123456'
@@ -17,10 +18,10 @@ const Login = () => {
     manual: true,
     onSuccess: (result, params) => {
       console.log(result, 'result', params, 'params')
-      toast('登录成功')
-      message.success('登录成功!')
+      toast.success('登录成功')
+      setToken(result.token)
       const urlParams = new URLSearchParams(location.search)
-      location.href = urlParams.get('redirect') || '/'
+      navigate(urlParams.get('redirect') || '/')
     },
     onError: error => {
       console.log('%c [ error ]-24', 'font-size:13px; background:#cf1322; color:#ffef50;', JSON.stringify(error))

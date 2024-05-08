@@ -1,15 +1,18 @@
 import { Avatar, Dropdown, MenuProps, Space, Flex } from 'antd'
 import { DownOutlined, LogoutOutlined, UserOutlined, SettingOutlined } from '@ant-design/icons'
-import NightToggleButton from '@/components/NightToggleButton'
+import DarkToggleButton from '@/components/ThemeToggleButton'
 import { message } from '@/utils/AntdGlobal'
+import { resetAllStores } from '@/store'
+import { useNavigate } from 'react-router-dom'
+
 const items: MenuProps['items'] = [
   {
-    key: '1',
+    key: 'changePassword',
     label: '修改密码',
     icon: <SettingOutlined />
   },
   {
-    key: '4',
+    key: 'logOut',
     danger: true,
     label: '退出登录',
     icon: <LogoutOutlined />
@@ -17,8 +20,20 @@ const items: MenuProps['items'] = [
 ]
 
 export default function NavHeader() {
+  const navigate = useNavigate()
   const onClick: MenuProps['onClick'] = ({ key }) => {
-    message.info(`Click on item ${key}`)
+    const menuFn = {
+      changePassword: () => {
+        message.info('修改密码')
+      },
+      logOut: () => {
+        message.info('退出登录成功!')
+        resetAllStores()
+        navigate('/login')
+      }
+    }
+    const runFn = Reflect.get(menuFn, key)
+    runFn()
   }
 
   return (
@@ -26,8 +41,8 @@ export default function NavHeader() {
       <Flex align='center' justify='space-between'>
         <Space align='baseline'></Space>
         <Space align='baseline'>
-          <NightToggleButton />
-          <Dropdown menu={{ items, onClick }} placement='bottomLeft' arrow>
+          <DarkToggleButton />
+          <Dropdown menu={{ items, onClick }} placement='bottomLeft'>
             <Space className='cursor-pointer'>
               <Avatar icon={<UserOutlined />} />
               <DownOutlined />

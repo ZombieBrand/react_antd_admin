@@ -1,12 +1,11 @@
 import axios, { AxiosError, AxiosRequestConfig } from 'axios'
 import urlJoin from 'url-join'
 import { showLoading, hideLoading } from './loading'
-import { createStorage } from './storage'
-import { Result } from '@/types/api'
+import { storage } from './storage'
+import { Result } from '@/types/api/api'
 import toast from 'react-hot-toast'
 import { IMessageType } from '@/constant/message'
 
-const storage = createStorage({ prefixKey: 'admin_', storage: sessionStorage })
 const env = import.meta.env
 const baseURL = urlJoin(env.VITE_BASE_API, env.VITE_BASE_API_PREFIX)
 console.log('%c [ baseURL ]-11', 'font-size:13px; background:#dc9efb; color:#ffe2ff;', JSON.stringify(baseURL))
@@ -79,10 +78,10 @@ interface IConfig extends AxiosRequestConfig {
 }
 
 export default {
-  get<T>(url: string, params?: object, options: IConfig = { showLoading: true, showError: true }): Promise<T> {
+  get<T>(url: string, params?: object, options: IConfig = { showLoading: false, showError: true }): Promise<T> {
     return instance.get(url, { params, ...options })
   },
-  post<T>(url: string, params?: object, options: IConfig = { showLoading: true, showError: true }): Promise<T> {
+  post<T>(url: string, params?: object, options: IConfig = { showLoading: false, showError: true }): Promise<T> {
     return instance.post(url, params, options)
   },
   downloadFile(url: string, data: any, fileName = 'fileName.xlsx') {

@@ -19,12 +19,12 @@ function App() {
         }
       }}
     >
+      <Toaster
+        toastOptions={{
+          className: 'dark:bg-slate-800 dark:text-white'
+        }}
+      />
       <AntdApp>
-        <Toaster
-          toastOptions={{
-            className: 'dark:bg-slate-800 dark:text-white'
-          }}
-        />
         <AntdGlobal />
         <RouterProvider router={router} />
       </AntdApp>

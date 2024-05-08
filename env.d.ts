@@ -33,5 +33,4 @@ interface ImportMetaEnv {
    * VITE_PROXY = [["/api","http://api-driver.marsview.cc"],["/upload","http://api-drive.marsview.cc"]]
    */
   readonly VITE_PROXY: any[]
-  readonly VITE_USER_NODE_ENV: string
 }

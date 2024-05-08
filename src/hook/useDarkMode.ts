@@ -1,19 +1,20 @@
 import { useState, useEffect } from 'react'
-
+import { useUserStore } from '@/store/modules/user'
 export function useDarkMode() {
   const [isDarkMode, setIsDarkMode] = useState(false)
-
+  const setTheme = useUserStore(state => state.updateTheme)
+  const theme = useUserStore(state => state.theme)
   useEffect(() => {
-    if (localStorage.theme === 'dark' || (!('theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+    if (theme === 'dark' || window.matchMedia('(prefers-color-scheme: dark)').matches) {
       document.documentElement.classList.add('dark')
       setIsDarkMode(true)
-      localStorage.theme = 'dark'
+      setTheme('dark')
     } else {
       document.documentElement.classList.remove('dark')
       setIsDarkMode(false)
-      localStorage.theme = 'light'
+      setTheme('light')
     }
-  }, [])
+  }, [theme])
 
   return isDarkMode
 }

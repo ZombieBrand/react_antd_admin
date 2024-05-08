@@ -18,13 +18,8 @@ export interface PageParams {
   pageNum: number
   pageSize?: number
 }
+
 export interface ILoginParams {
   userName: string
   userPwd: string
-}
-
-export interface ILogin extends PageParams {
-  userId?: number
-  userName?: string
-  state?: number
 }

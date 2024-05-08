@@ -85,4 +85,4 @@ export const createStorage = ({ prefixKey = '', storage = localStorage, document
   return new Storage()
 }
 
-export const storage = createStorage()
+export const storage = createStorage({ prefixKey: 'admin_', storage: sessionStorage })
