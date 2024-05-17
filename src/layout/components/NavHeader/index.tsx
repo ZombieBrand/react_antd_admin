@@ -1,9 +1,10 @@
 import { Avatar, Dropdown, MenuProps, Space, Flex } from 'antd'
-import { DownOutlined, LogoutOutlined, UserOutlined, SettingOutlined } from '@ant-design/icons'
+import { LogoutOutlined, SettingOutlined } from '@ant-design/icons'
 import DarkToggleButton from '@/components/ThemeToggleButton'
 import { message } from '@/utils/AntdGlobal'
 import { resetAllStores } from '@/store'
 import { useNavigate } from 'react-router-dom'
+import { useUserStore } from '@/store/modules/user'
 
 const items: MenuProps['items'] = [
   {
@@ -21,6 +22,7 @@ const items: MenuProps['items'] = [
 
 export default function NavHeader() {
   const navigate = useNavigate()
+  const userName = useUserStore(state => state.userInfo.userName)
   const onClick: MenuProps['onClick'] = ({ key }) => {
     const menuFn = {
       changePassword: () => {
@@ -44,8 +46,9 @@ export default function NavHeader() {
           <DarkToggleButton />
           <Dropdown menu={{ items, onClick }} placement='bottomLeft'>
             <Space className='cursor-pointer'>
-              <Avatar icon={<UserOutlined />} />
-              <DownOutlined />
+              <Avatar className='align-middle' size='large' gap={1}>
+                {userName}
+              </Avatar>
             </Space>
           </Dropdown>
         </Space>

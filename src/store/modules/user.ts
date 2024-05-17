@@ -12,7 +12,7 @@ type State = {
 type Action = {
   updateToken: (token: string) => void
   updateUserInfo: (userInfo: IUserInfoResult) => void
-  updateCollapsed: () => void
+  updateCollapsed: (collapsed: boolean) => void
   updateTheme: (theme: ITheme) => void
   reset: () => void
 }
@@ -43,12 +43,7 @@ export const useUserStore = create<State & Action>()(
         updateToken: token => set({ token }),
         updateTheme: theme => set({ theme }),
         updateUserInfo: (userInfo: IUserInfoResult) => set({ userInfo }),
-        updateCollapsed: () =>
-          set(state => {
-            return {
-              collapsed: !state.collapsed
-            }
-          }),
+        updateCollapsed: collapsed => set({ collapsed }),
         reset: () => {
           set(initialState)
         }

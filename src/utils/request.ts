@@ -1,14 +1,14 @@
 import axios, { AxiosError, AxiosRequestConfig } from 'axios'
 import urlJoin from 'url-join'
 import { showLoading, hideLoading } from './loading'
-import { storage } from './storage'
 import { Result } from '@/types/api/api'
 import toast from 'react-hot-toast'
 import { IMessageType } from '@/constant/message'
+import { useUserStore } from '@/store/modules/user'
+import { resetAllStores } from '@/store'
 
 const env = import.meta.env
 const baseURL = urlJoin(env.VITE_BASE_API, env.VITE_BASE_API_PREFIX)
-console.log('%c [ baseURL ]-11', 'font-size:13px; background:#dc9efb; color:#ffe2ff;', JSON.stringify(baseURL))
 // 创建实例
 const instance = axios.create({
   baseURL,
@@ -25,7 +25,8 @@ const instance = axios.create({
 instance.interceptors.request.use(
   config => {
     if (config.showLoading) showLoading()
-    const token = storage.get('token')
+    // const token = storage.get('token')
+    const { token } = useUserStore.getState()
     if (token) {
       config.headers.Authorization = 'Bearer ' + token
     }
@@ -49,7 +50,7 @@ instance.interceptors.response.use(
       toast.error(data.message, {
         id: IMessageType.GLOBAL_ERROR
       })
-      storage.remove('token')
+      resetAllStores()
       location.href = '/login?redirect=' + encodeURIComponent(location.href)
     } else if (data.code != 0) {
       if (config.showError === false) {

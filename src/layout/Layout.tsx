@@ -1,4 +1,3 @@
-import { useState } from 'react'
 import { Layout, theme } from 'antd'
 import { motion, AnimatePresence } from 'framer-motion'
 import SideMenu from './components/Nenu'
@@ -7,6 +6,7 @@ import NavHeader from './components/NavHeader'
 import settings from '@/config/layout'
 import { Outlet, useLocation } from 'react-router-dom'
 import MyBreadcrumb from '@/layout/components/NavHeader/Breadcrumb'
+import { useUserStore } from '@/store/modules/user'
 
 const { Header, Content, Sider } = Layout
 
@@ -15,7 +15,8 @@ const {
 } = settings()
 
 const MyLayout = () => {
-  const [collapsed, setCollapsed] = useState(false)
+  const collapsed = useUserStore(state => state.collapsed)
+  const setCollapsed = useUserStore(state => state.updateCollapsed)
   const {
     token: { colorBgContainer }
   } = theme.useToken()
@@ -31,7 +32,7 @@ const MyLayout = () => {
         className='fixed bottom-0 left-0 top-0 h-screen overflow-auto'
       >
         <Logo collapsed={collapsed} />
-        <SideMenu />
+        <SideMenu collapsed={collapsed} />
       </Sider>
       <Layout style={{ marginLeft: collapsed ? sideCollapsedWidth : sidebarWidth }} className='h-screen transition-[margin]'>
         <Header style={{ padding: 0, background: colorBgContainer, height: settingHeaderHeight }}>
@@ -47,7 +48,7 @@ const MyLayout = () => {
           className='overflow-auto'
         >
           <AnimatePresence mode='wait'>
-            <motion.div key={location.pathname} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }}>
+            <motion.div key={location.pathname} initial={{ opacity: 0 }} animate={{ opacity: 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.3 }} className='h-full w-full' id='contentWrapper'>
               <Outlet />
             </motion.div>
           </AnimatePresence>

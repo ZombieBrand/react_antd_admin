@@ -1,10 +1,12 @@
-import { createBrowserRouter, Navigate } from 'react-router-dom'
+import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom'
 import Login from '@/views/login/index'
 import Error403 from '@/views/403'
 import Error404 from '@/views/404'
 import ErrorPage from '@/views/error'
 import Layout from '@/layout'
 import Home from '@/views/home/'
+import User from '@/views/system/user/index'
+
 export const router = [
   {
     path: '/',
@@ -17,10 +19,23 @@ export const router = [
   },
   {
     element: <Layout />,
+    path: '/',
     children: [
       {
-        path: '/home',
-        element: <Home />
+        path: 'home',
+        element: <Home />,
+        index: true
+      }
+    ]
+  },
+  {
+    element: <Layout />,
+    path: '/system',
+    children: [
+      {
+        path: 'user',
+        element: <User />,
+        index: true
       }
     ]
   },
