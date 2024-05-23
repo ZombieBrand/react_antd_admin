@@ -1,4 +1,4 @@
-import { createBrowserRouter, Navigate, Outlet } from 'react-router-dom'
+import { createBrowserRouter, Navigate } from 'react-router-dom'
 import Login from '@/views/login/index'
 import Error403 from '@/views/403'
 import Error404 from '@/views/404'
@@ -6,7 +6,7 @@ import ErrorPage from '@/views/error'
 import Layout from '@/layout'
 import Home from '@/views/home/'
 import User from '@/views/system/user/index'
-
+import Menu from '@/views/system/menu/index'
 export const router = [
   {
     path: '/',
@@ -34,8 +34,11 @@ export const router = [
     children: [
       {
         path: 'user',
-        element: <User />,
-        index: true
+        element: <User />
+      },
+      {
+        path: 'menu',
+        element: <Menu />
       }
     ]
   },

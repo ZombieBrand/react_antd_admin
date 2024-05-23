@@ -32,7 +32,6 @@ const EditUser = (props: IModalProp<any>) => {
   const handleSubmit = async () => {
     const valid = await form.validateFields()
     setLoading(true)
-    console.log(valid)
     if (valid) {
       const params = {
         ...form.getFieldsValue()
@@ -44,10 +43,9 @@ const EditUser = (props: IModalProp<any>) => {
         toast.success('修改成功')
       }
       props.update()
-      setTimeout(() => {
-        setLoading(false)
-        handleCancel()
-      }, 1500)
+      setLoading(false)
+      handleCancel()
+      form.resetFields()
     }
   }
   const handleCancel = () => {
@@ -57,19 +55,19 @@ const EditUser = (props: IModalProp<any>) => {
 
   return (
     <Modal title={action === IAction.CREATE ? '创建用户' : '编辑用户'} okText='确定' cancelText='取消' open={visible} onOk={handleSubmit} onCancel={handleCancel} confirmLoading={loading}>
-      <Form form={form} labelCol={{ span: 4 }} labelAlign='right'>
-        <Form.Item name='userId' hidden>
-          <Input />
+      <Form form={form} labelCol={{ span: 4 }} labelAlign='right' name='editUser'>
+        <Form.Item name='id' hidden>
+          <Input></Input>
         </Form.Item>
         <Form.Item
-          label='用户名称'
+          label='用户名'
           name='userName'
           rules={[
             { required: true, message: '请输入用户名称' },
             { min: 2, max: 12, message: '用户名称最小2个字符，最大12个字符' }
           ]}
         >
-          <Input placeholder='请输入用户名称'></Input>
+          <Input placeholder='请输入用户名称' disabled={action === IAction.UPDATE}></Input>
         </Form.Item>
         <Form.Item
           label='登录账号'
@@ -79,7 +77,7 @@ const EditUser = (props: IModalProp<any>) => {
             { min: 5, max: 20, message: '登录账号最小5个字符，最大20个字符' }
           ]}
         >
-          <Input placeholder='请输入用户名称'></Input>
+          <Input placeholder='请输入登录账号' disabled={action === IAction.UPDATE}></Input>
         </Form.Item>
         <Form.Item
           label='登录密码'
@@ -99,16 +97,18 @@ const EditUser = (props: IModalProp<any>) => {
             { type: 'email', message: '请输入正确的邮箱' }
           ]}
         >
-          <Input placeholder='请输入用户邮箱' disabled={action === IAction.UPDATE}></Input>
+          <Input placeholder='请输入用户邮箱'></Input>
         </Form.Item>
-        <Form.Item label='状态' name='state'>
+        <Form.Item label='状态' name='state' rules={[{ required: true, message: '请输入用户邮箱', type: 'number' }]}>
           <Select>
             {roleStatusOptions.map(item => (
-              <Select.Option value={item.value}>{item.label}</Select.Option>
+              <Select.Option value={item.value} key={item.value}>
+                {item.label}
+              </Select.Option>
             ))}
           </Select>
         </Form.Item>
-        <Form.Item label='系统角色' name='roleList'>
+        <Form.Item label='系统角色' name='role'>
           <Select placeholder='请选择角色'>
             {roleOptions.map(item => {
               return (

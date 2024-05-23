@@ -1,39 +1,34 @@
 import { defineMock } from 'vite-plugin-mock-dev-server'
 import { errorWrap, successWrap } from '../shared/utils/dataWrap'
-import { userList } from '../shared/database/user'
-import { menuList, buttonList } from '../shared/database/menu'
+import { menuList } from '../shared/database/menu'
 
 export default defineMock([
   {
-    url: '/api/user/list',
+    url: '/api/menu/list',
     method: 'GET',
     body({ query }) {
       const { current = 0, pageSize = 0 } = query
       const startIndex = (Number(current) - 1) * Number(pageSize)
       const endIndex = startIndex + Number(pageSize)
-      const list = userList.slice(startIndex, endIndex)
-      const total = userList.length
+      const list = menuList.slice(startIndex, endIndex)
+      const total = menuList.length
       const data = {
         list,
         total
       }
-      if (data.list) {
+      if (data) {
         return successWrap({ data })
       } else {
-        return errorWrap({ message: '用户信息不存在!' })
+        return errorWrap({ message: '菜单数据获取失败!' })
       }
     },
     delay: 1000
   },
   {
-    url: '/api/user/getPermissionList',
+    url: '/api/menu/all/list',
     method: 'GET',
     body() {
-      if (buttonList || menuList) {
-        return successWrap({ data: { menuList, buttonList } })
-      } else {
-        return errorWrap({ message: '用户信息不存在!' })
-      }
+      return successWrap({ data: menuList })
     },
     delay: 1000
   }

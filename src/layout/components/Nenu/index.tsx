@@ -30,18 +30,13 @@ export default function SideMenu({ collapsed }: Props) {
       },
       {
         label: '菜单管理',
-        key: '2_2',
+        key: '/system/menu',
         icon: <MenuOutlined />
       },
       {
         label: '角色管理',
-        key: '2_3',
+        key: '/system/role',
         icon: <TeamOutlined />
-      },
-      {
-        label: '部门管理',
-        key: '2_4',
-        icon: <ApartmentOutlined />
       }
     ]),
     getItem('订单管理', '3', <SettingOutlined />, [

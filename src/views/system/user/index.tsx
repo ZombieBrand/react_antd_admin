@@ -23,7 +23,7 @@ const UserManage = () => {
 
   const { runAsync } = useRequest(getUserListApi)
   const userRef = useRef<{
-    open: (type: IAction, data?: any) => void
+    open: (type: IAction, data?: IUserData) => void
   }>()
 
   // 创建用户
@@ -57,6 +57,10 @@ const UserManage = () => {
     {
       title: '登录账号',
       dataIndex: 'account'
+    },
+    {
+      title: '用户邮箱',
+      dataIndex: 'userEmail'
     },
     {
       title: '状态',
@@ -106,7 +110,6 @@ const UserManage = () => {
         pagination={paginationOptions}
         request={async params => {
           const { current = 1, pageSize = 10, ...searchData } = params
-          console.log(params)
           try {
             Promise.all([updateRoleOptions(), updateRoleStatusOptions()])
             const result = await runAsync({ current, pageSize, query: searchData })

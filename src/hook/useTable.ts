@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import settings from '@/config/layout'
 /**
- * 给Table组件设置内容显示高度,超过开启滚动
+ * 给Table组件设置内容显示高度,超过开启滚动,父容器需要固定height值
  * @param options 配置对象，包含表格的类名。
  * @param options.className 表格元素的类名,在多个表格时，需要指定自定义类名。
  * @returns 滚动条在Y轴上的偏移量。
@@ -56,6 +56,5 @@ export function useTableScrollY(
       resizeObserver.disconnect()
     }
   }, [className, contentPadding])
-
   return y
 }
