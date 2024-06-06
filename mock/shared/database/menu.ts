@@ -3,7 +3,7 @@ export const menuList = [
     id: '655db45ff10762608048caec',
     menuType: 1,
     menuName: '首页',
-    path: '/home',
+    path: 'home',
     icon: 'HomeOutlined',
     orderBy: 0,
     menuState: 1,
@@ -40,8 +40,8 @@ export const menuList = [
   {
     id: '655db520f10762608048cafa',
     menuType: 1,
-    menuName: '用户管理',
-    path: '',
+    menuName: '系统管理',
+    path: 'system',
     icon: 'UsergroupAddOutlined',
     orderBy: 1,
     menuState: 1,
@@ -52,8 +52,8 @@ export const menuList = [
       {
         id: '655db546f10762608048cafe',
         menuType: 1,
-        menuName: '用户列表',
-        path: '/userList',
+        menuName: '用户管理',
+        path: 'user',
         icon: 'UserOutlined',
         orderBy: 0,
         menuState: 1,
@@ -157,7 +157,7 @@ export const menuList = [
         id: '655db59bf10762608048cb06',
         menuType: 1,
         menuName: '菜单管理',
-        path: '/menuList',
+        path: 'menu',
         icon: 'MenuOutlined',
         orderBy: 1,
         menuState: 1,
@@ -261,7 +261,7 @@ export const menuList = [
         id: '655db5c7f10762608048cb0e',
         menuType: 1,
         menuName: '角色管理',
-        path: '/roleList',
+        path: 'role',
         icon: 'TrademarkCircleOutlined',
         orderBy: 2,
         menuState: 1,
@@ -366,7 +366,7 @@ export const menuList = [
     ]
   }
 ]
-export const buttonList = [
+export const permissionList = [
   'driverList@query',
   'cluster@query',
   'role@query',

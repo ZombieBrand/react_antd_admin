@@ -12,7 +12,7 @@ const EditMenu = (props: IModalProp<any>) => {
   const [action, setAction] = useState<IAction>(IAction.CREATE)
   const [loading, setLoading] = useState(false)
   const menuList = useRouterStore(state => state.menuList)
-
+  const updateMenuList = useRouterStore(state => state.updateMenuList)
   // 暴露子组件open方法
   useImperativeHandle(props.mRef, () => {
     return {
@@ -24,6 +24,7 @@ const EditMenu = (props: IModalProp<any>) => {
   const open = (type: IAction, data?: any) => {
     setAction(type)
     setVisible(true)
+    updateMenuList()
     if (data) {
       form.setFieldsValue(data)
     }

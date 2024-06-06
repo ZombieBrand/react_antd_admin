@@ -37,7 +37,7 @@ const MenuManage = () => {
   }
   // 公共删除用户接口
   const handleUserDelSubmit = async (ids: string[]) => {
-    console.log(ids)
+    console.log(ids, 'handleUserDelSubmit')
   }
   // 删除用户
   const handleDel = (record: IMenuItem) => {

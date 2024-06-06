@@ -7,7 +7,6 @@ import svgr from 'vite-plugin-svgr'
 import { envParse } from 'vite-plugin-env-parse'
 import minipic from 'vite-plugin-minipic'
 import million from 'million/compiler'
-
 export function createVitePlugins(viteEnv: Record<string, string>, isBuild: boolean) {
   const { VITE_USER_NODE_ENV, VITE_USE_MOCK } = viteEnv
   const vitePlugins: (PluginOption | PluginOption[])[] = [million.vite({ auto: true }), react(), imagetools(), viteImagemin(), svgr(), envParse()]

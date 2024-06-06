@@ -7,6 +7,8 @@ import Layout from '@/layout'
 import Home from '@/views/home/'
 import User from '@/views/system/user/index'
 import Menu from '@/views/system/menu/index'
+import AuthLoader from './AuthLoader'
+
 export const router = [
   {
     path: '/',
@@ -19,26 +21,27 @@ export const router = [
   },
   {
     element: <Layout />,
+    loader: AuthLoader,
+    id: 'layout',
     path: '/',
     children: [
       {
         path: 'home',
         element: <Home />,
         index: true
-      }
-    ]
-  },
-  {
-    element: <Layout />,
-    path: '/system',
-    children: [
-      {
-        path: 'user',
-        element: <User />
       },
       {
-        path: 'menu',
-        element: <Menu />
+        path: 'system',
+        children: [
+          {
+            path: 'user',
+            element: <User />
+          },
+          {
+            path: 'menu',
+            element: <Menu />
+          }
+        ]
       }
     ]
   },

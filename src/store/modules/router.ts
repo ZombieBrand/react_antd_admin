@@ -1,19 +1,25 @@
 import { create } from '@/store/index'
 import { devtools, persist, createJSONStorage } from 'zustand/middleware'
-import { getMenuAllListApi } from '@/api/system/menu'
+import { getPermissionApi } from '@/api/permission'
 import toast from 'react-hot-toast'
-import type { IMenuItem } from '@/types/api/menu'
+import type { IAuthData } from '@/types/menu'
+import { getMenuPath } from '@/utils/router'
 
 type State = {
-  menuList: IMenuItem[]
+  menuList: IAuthData['menuList']
+  buttonList: IAuthData['buttonList']
+  menuPathList: IAuthData['menuPathList']
 }
 type Action = {
-  updateMenuList: () => Promise<IMenuItem[] | []>
+  updateState: ({ menuList, buttonList, menuPathList }: State) => void
+  updateMenuList: () => Promise<IAuthData['menuList'] | []>
   reset: () => void
 }
 
 const initialState: State = {
-  menuList: []
+  menuList: [],
+  buttonList: [],
+  menuPathList: []
 }
 
 export const useRouterStore = create<State & Action>()(
@@ -23,15 +29,21 @@ export const useRouterStore = create<State & Action>()(
         ...initialState,
         updateMenuList: async () => {
           try {
-            const result = await getMenuAllListApi()
-            set({ menuList: result })
-            return result
+            const result = await getPermissionApi()
+            const buttonList = result.permissionList
+            const menuList = result.menuList
+            const menuPathList = getMenuPath(menuList)
+            set({ menuList, buttonList, menuPathList })
+            return menuList
           } catch (error) {
             console.error(error)
-            toast.error('获取菜单列表失败!')
-            set({ menuList: [] })
+            toast.error('获取菜单和权限失败!')
+            set({ menuList: [], buttonList: [], menuPathList: [] })
             return []
           }
+        },
+        updateState: ({ menuList, buttonList, menuPathList }) => {
+          set({ menuList, buttonList, menuPathList })
         },
         reset: () => {
           set(initialState)

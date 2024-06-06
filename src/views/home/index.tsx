@@ -4,7 +4,6 @@ const { Link } = Typography
 const Home = () => {
   const imageModules = import.meta.glob('../../assets/ServiceLogos/**/*.png', { import: 'default', eager: true, query: '?url' })
   const images = Object.values(imageModules).map(mod => mod) as string[]
-  console.log({ images })
   return (
     <Typography>
       <Link className='text-2xl' href='https://github.com/SAWARATSUKI/ServiceLogos'>

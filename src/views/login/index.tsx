@@ -17,7 +17,7 @@ const Login = () => {
   const { loading, run } = useRequest(loginApi, {
     manual: true,
     onSuccess: (result, params) => {
-      console.log(result, 'result', params, 'params')
+      console.log('%c [ params ]-20', 'font-size:13px; background:#974db4; color:#db91f8;', params)
       toast.success('登录成功')
       setToken(result.token)
       const urlParams = new URLSearchParams(location.search)

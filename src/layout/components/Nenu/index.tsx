@@ -1,66 +1,35 @@
-import React from 'react'
+import { useEffect, useState } from 'react'
 import { Menu, ConfigProvider } from 'antd'
-import { DesktopOutlined, SettingOutlined, TeamOutlined, MenuOutlined, ApartmentOutlined } from '@ant-design/icons'
-import type { MenuProps } from 'antd'
-import { useNavigate } from 'react-router-dom'
+import { useLocation, useNavigate, useRouteLoaderData } from 'react-router-dom'
+import type { IAuthData, MenuItem } from '@/types/menu'
+import { useRouterStore } from '@/store/modules/router'
+import { getTreeMenu } from '@/utils/router'
 
-type MenuItem = Required<MenuProps>['items'][number]
-
-function getItem(label: React.ReactNode, key: React.Key, icon?: React.ReactNode, children?: MenuItem[], type?: 'group'): MenuItem {
-  return {
-    key,
-    icon,
-    children,
-    label,
-    type
-  } as MenuItem
-}
 type Props = {
   collapsed: boolean
 }
+
 export default function SideMenu({ collapsed }: Props) {
+  const [menuList, setMenuList] = useState<MenuItem[]>([])
+  const [selectedKeys, setSelectedKeys] = useState<string[]>([])
+  const authLoaderData = useRouteLoaderData('layout') as IAuthData
+  const updateState = useRouterStore(state => state.updateState)
+  const { pathname } = useLocation()
   const navigate = useNavigate()
-  const items: MenuItem[] = [
-    getItem('工作台', '/home', <DesktopOutlined />),
-    getItem('系统管理', 'system', <SettingOutlined />, [
-      {
-        label: '用户管理',
-        key: '/system/user',
-        icon: <TeamOutlined />
-      },
-      {
-        label: '菜单管理',
-        key: '/system/menu',
-        icon: <MenuOutlined />
-      },
-      {
-        label: '角色管理',
-        key: '/system/role',
-        icon: <TeamOutlined />
-      }
-    ]),
-    getItem('订单管理', '3', <SettingOutlined />, [
-      {
-        label: '订单列表',
-        key: '3_1',
-        icon: <TeamOutlined />
-      },
-      {
-        label: '订单聚合',
-        key: '3_2',
-        icon: <TeamOutlined />
-      },
-      {
-        label: '司机列表',
-        key: '3_3',
-        icon: <TeamOutlined />
-      }
-    ])
-  ]
+
   // 菜单点击
   const handleClickMenu = ({ key }: { key: string }) => {
+    setSelectedKeys([key])
     navigate(key)
   }
+
+  // 初始化，获取接口菜单列表数据
+  useEffect(() => {
+    const treeMenuList = getTreeMenu(authLoaderData.menuList)
+    setMenuList(() => treeMenuList)
+    setSelectedKeys([pathname])
+    updateState(authLoaderData)
+  }, [])
   return (
     <ConfigProvider
       theme={{
@@ -73,7 +42,7 @@ export default function SideMenu({ collapsed }: Props) {
         }
       }}
     >
-      <Menu defaultSelectedKeys={['1']} defaultOpenKeys={['1']} mode='inline' theme='dark' items={items} onClick={handleClickMenu} />
+      <Menu selectedKeys={selectedKeys} onClick={handleClickMenu} mode='inline' theme='dark' items={menuList} />
     </ConfigProvider>
   )
 }
