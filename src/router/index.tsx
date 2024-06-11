@@ -7,6 +7,7 @@ import Layout from '@/layout'
 import Home from '@/views/home/'
 import User from '@/views/system/user/index'
 import Menu from '@/views/system/menu/index'
+import Role from '@/views/system/role/index'
 import AuthLoader from './AuthLoader'
 
 export const router = [
@@ -40,6 +41,10 @@ export const router = [
           {
             path: 'menu',
             element: <Menu />
+          },
+          {
+            path: 'role',
+            element: <Role />
           }
         ]
       }

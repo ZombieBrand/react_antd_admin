@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { Menu, ConfigProvider } from 'antd'
-import { useLocation, useNavigate, useRouteLoaderData } from 'react-router-dom'
+import { useNavigate, useRouteLoaderData, useMatches } from 'react-router-dom'
 import type { IAuthData, MenuItem } from '@/types/menu'
 import { useRouterStore } from '@/store/modules/router'
 import { getTreeMenu } from '@/utils/router'
@@ -12,9 +12,10 @@ type Props = {
 export default function SideMenu({ collapsed }: Props) {
   const [menuList, setMenuList] = useState<MenuItem[]>([])
   const [selectedKeys, setSelectedKeys] = useState<string[]>([])
+  const [openKeys, setOpenKeys] = useState<string[]>([])
   const authLoaderData = useRouteLoaderData('layout') as IAuthData
   const updateState = useRouterStore(state => state.updateState)
-  const { pathname } = useLocation()
+  const matches = useMatches()
   const navigate = useNavigate()
 
   // 菜单点击
@@ -23,13 +24,19 @@ export default function SideMenu({ collapsed }: Props) {
     navigate(key)
   }
 
+  const handleOpenChange = (openKeys: string[]) => {
+    setOpenKeys(openKeys)
+  }
+
   // 初始化，获取接口菜单列表数据
   useEffect(() => {
     const treeMenuList = getTreeMenu(authLoaderData.menuList)
     setMenuList(() => treeMenuList)
-    setSelectedKeys([pathname])
+    const pathnames = matches.slice(1).map(item => item.pathname)
+    setSelectedKeys(pathnames.slice(pathnames.length - 1))
+    setOpenKeys(pathnames.slice(0, pathnames.length - 1))
     updateState(authLoaderData)
-  }, [])
+  }, [matches, authLoaderData])
   return (
     <ConfigProvider
       theme={{
@@ -42,7 +49,7 @@ export default function SideMenu({ collapsed }: Props) {
         }
       }}
     >
-      <Menu selectedKeys={selectedKeys} onClick={handleClickMenu} mode='inline' theme='dark' items={menuList} />
+      <Menu openKeys={openKeys} selectedKeys={selectedKeys} onClick={handleClickMenu} onOpenChange={handleOpenChange} mode='inline' theme='dark' items={menuList} />
     </ConfigProvider>
   )
 }
