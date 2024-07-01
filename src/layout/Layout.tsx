@@ -5,7 +5,6 @@ import Logo from '@/layout/components/Logo'
 import NavHeader from './components/NavHeader'
 import settings from '@/config/layout'
 import { Outlet, useLocation } from 'react-router-dom'
-import MyBreadcrumb from '@/layout/components/NavHeader/Breadcrumb'
 import { useUserStore } from '@/store/modules/user'
 
 const { Header, Content, Sider } = Layout
@@ -38,7 +37,6 @@ const MyLayout = () => {
         <Header style={{ padding: 0, background: colorBgContainer, height: settingHeaderHeight }}>
           <NavHeader />
         </Header>
-        <MyBreadcrumb />
         <Content
           style={{
             margin: contentMargin,

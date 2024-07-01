@@ -105,52 +105,6 @@ export const menuList = [
             createTime: '2023-11-22T08:52:47.967Z',
             updateTime: '2023-11-22T08:52:47.967Z'
           }
-        ],
-        buttons: [
-          {
-            id: '655db556f10762608048cb02',
-            menuType: 2,
-            menuName: '查看',
-            menuCode: 'user@query',
-            orderBy: 0,
-            menuState: 1,
-            parentId: '655db546f10762608048cafe',
-            createTime: '2023-11-22T07:50:59.931Z',
-            updateTime: '2023-11-22T07:50:59.931Z'
-          },
-          {
-            id: '655dc53ed4dc6d6fda15dbad',
-            menuType: 2,
-            menuName: '新增',
-            menuCode: 'user@create',
-            orderBy: 1,
-            menuState: 1,
-            parentId: '655db546f10762608048cafe',
-            createTime: '2023-11-22T08:52:47.967Z',
-            updateTime: '2023-11-22T08:52:47.967Z'
-          },
-          {
-            id: '655dc67ed4dc6d6fda15dbc7',
-            menuType: 2,
-            menuName: '编辑',
-            menuCode: 'user@edit',
-            orderBy: 2,
-            menuState: 1,
-            parentId: '655db546f10762608048cafe',
-            createTime: '2023-11-22T08:52:47.967Z',
-            updateTime: '2023-11-22T08:52:47.967Z'
-          },
-          {
-            id: '655dc68ad4dc6d6fda15dbcb',
-            menuType: 2,
-            menuName: '删除',
-            menuCode: 'user@delete',
-            orderBy: 3,
-            menuState: 1,
-            parentId: '655db546f10762608048cafe',
-            createTime: '2023-11-22T08:52:47.967Z',
-            updateTime: '2023-11-22T08:52:47.967Z'
-          }
         ]
       },
       {
@@ -209,52 +163,6 @@ export const menuList = [
             createTime: '2023-11-22T08:52:47.967Z',
             updateTime: '2023-11-22T08:52:47.967Z'
           }
-        ],
-        buttons: [
-          {
-            id: '655db5a8f10762608048cb0a',
-            menuType: 2,
-            menuName: '查看',
-            menuCode: 'menu@query',
-            orderBy: 0,
-            menuState: 1,
-            parentId: '655db59bf10762608048cb06',
-            createTime: '2023-11-22T07:50:59.931Z',
-            updateTime: '2023-11-22T07:50:59.931Z'
-          },
-          {
-            id: '655dc69bd4dc6d6fda15dbcf',
-            menuType: 2,
-            menuName: '新增',
-            menuCode: 'menu@create',
-            orderBy: 1,
-            menuState: 1,
-            parentId: '655db59bf10762608048cb06',
-            createTime: '2023-11-22T08:52:47.967Z',
-            updateTime: '2023-11-22T08:52:47.967Z'
-          },
-          {
-            id: '655dc6a5d4dc6d6fda15dbd3',
-            menuType: 2,
-            menuName: '编辑',
-            menuCode: 'menu@edit',
-            orderBy: 2,
-            menuState: 1,
-            parentId: '655db59bf10762608048cb06',
-            createTime: '2023-11-22T08:52:47.967Z',
-            updateTime: '2023-11-22T08:52:47.967Z'
-          },
-          {
-            id: '655dc6afd4dc6d6fda15dbd7',
-            menuType: 2,
-            menuName: '删除',
-            menuCode: 'menu@delete',
-            orderBy: 3,
-            menuState: 1,
-            parentId: '655db59bf10762608048cb06',
-            createTime: '2023-11-22T08:52:47.967Z',
-            updateTime: '2023-11-22T08:52:47.967Z'
-          }
         ]
       },
       {
@@ -269,53 +177,6 @@ export const menuList = [
         createTime: '2023-11-22T07:50:59.931Z',
         updateTime: '2023-11-22T07:50:59.931Z',
         children: [
-          {
-            id: '655dbb0011c02c8597dce710',
-            menuType: 2,
-            menuName: '查看',
-            icon: 'role@query',
-            orderBy: 0,
-            menuState: 1,
-            parentId: '655db5c7f10762608048cb0e',
-            createTime: '2023-11-22T08:23:39.918Z',
-            updateTime: '2023-11-22T08:40:20.527Z',
-            menuCode: 'role@query'
-          },
-          {
-            id: '655dc6c7d4dc6d6fda15dbdb',
-            menuType: 2,
-            menuName: '编辑',
-            menuCode: 'role@edit',
-            orderBy: 1,
-            menuState: 1,
-            parentId: '655db5c7f10762608048cb0e',
-            createTime: '2023-11-22T08:52:47.967Z',
-            updateTime: '2023-11-22T08:52:47.967Z'
-          },
-          {
-            id: '655dc6d3d4dc6d6fda15dbdf',
-            menuType: 2,
-            menuName: '设置权限',
-            menuCode: 'role@create',
-            orderBy: 2,
-            menuState: 1,
-            parentId: '655db5c7f10762608048cb0e',
-            createTime: '2023-11-22T08:52:47.967Z',
-            updateTime: '2023-11-22T08:52:47.967Z'
-          },
-          {
-            id: '655dc6ddd4dc6d6fda15dbe3',
-            menuType: 2,
-            menuName: '删除',
-            menuCode: 'role@delete',
-            orderBy: 3,
-            menuState: 1,
-            parentId: '655db5c7f10762608048cb0e',
-            createTime: '2023-11-22T08:52:47.967Z',
-            updateTime: '2023-11-22T08:52:47.967Z'
-          }
-        ],
-        buttons: [
           {
             id: '655dbb0011c02c8597dce710',
             menuType: 2,

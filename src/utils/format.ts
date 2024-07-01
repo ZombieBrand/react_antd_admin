@@ -54,3 +54,11 @@ export const formatDate = (date?: Date | string, rule?: string) => {
   }
   return fmt
 }
+
+/**
+ * 手机号加密
+ */
+export const formatPhone = (phone?: string) => {
+  if (!phone) return ''
+  return phone.replace(/(\d{3})\d*(\d{4})/, '$1****$2')
+}

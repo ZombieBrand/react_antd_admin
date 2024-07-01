@@ -1,13 +1,11 @@
+import React from 'react'
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 import Login from '@/views/login/index'
 import Error403 from '@/views/403'
 import Error404 from '@/views/404'
 import ErrorPage from '@/views/error'
 import Layout from '@/layout'
-import Home from '@/views/home/'
-import User from '@/views/system/user/index'
-import Menu from '@/views/system/menu/index'
-import Role from '@/views/system/role/index'
+import lazyLoad from './lazyLoad'
 import AuthLoader from './AuthLoader'
 
 export const router = [
@@ -28,7 +26,7 @@ export const router = [
     children: [
       {
         path: 'home',
-        element: <Home />,
+        element: lazyLoad(React.lazy(() => import('@/views/home/'))),
         index: true
       },
       {
@@ -36,15 +34,15 @@ export const router = [
         children: [
           {
             path: 'user',
-            element: <User />
+            element: lazyLoad(React.lazy(() => import('@/views/system/user/index')))
           },
           {
             path: 'menu',
-            element: <Menu />
+            element: lazyLoad(React.lazy(() => import('@/views/system/menu/index')))
           },
           {
             path: 'role',
-            element: <Role />
+            element: lazyLoad(React.lazy(() => import('@/views/system/role/index')))
           }
         ]
       }

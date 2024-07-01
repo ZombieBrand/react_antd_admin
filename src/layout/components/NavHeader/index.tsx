@@ -40,8 +40,7 @@ export default function NavHeader() {
 
   return (
     <div className='px-4'>
-      <Flex align='center' justify='space-between'>
-        <Space align='baseline'></Space>
+      <Flex align='center' justify='end'>
         <Space align='baseline'>
           <DarkToggleButton />
           <Dropdown menu={{ items, onClick }} placement='bottomLeft'>
