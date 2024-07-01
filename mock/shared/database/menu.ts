@@ -296,7 +296,7 @@ export const menuList = [
             id: '655dc6d3d4dc6d6fda15dbdf',
             menuType: 2,
             menuName: '设置权限',
-            menuCode: 'role@setting',
+            menuCode: 'role@create',
             orderBy: 2,
             menuState: 1,
             parentId: '655db5c7f10762608048cb0e',
@@ -343,7 +343,7 @@ export const menuList = [
             id: '655dc6d3d4dc6d6fda15dbdf',
             menuType: 2,
             menuName: '设置权限',
-            menuCode: 'role@setting',
+            menuCode: 'role@create',
             orderBy: 2,
             menuState: 1,
             parentId: '655db5c7f10762608048cb0e',
@@ -366,12 +366,12 @@ export const menuList = [
     ]
   }
 ]
-export const permissionList = [
+export const buttonList = [
   'driverList@query',
   'cluster@query',
   'role@query',
   'role@edit',
-  'role@setting',
+  'role@create',
   'role@delete',
   'menu@query',
   'menu@create',

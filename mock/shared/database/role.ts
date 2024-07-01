@@ -4,7 +4,6 @@ export const roleList = [
     roleId: 1,
     roleName: '管理员',
     permissions: [],
-    permissionKeys: [],
     description: '管理员',
     created_at: '1975-05-08 14:25:12',
     updated_at: '2002-06-13 00:01:38'
@@ -14,7 +13,6 @@ export const roleList = [
     roleId: 2,
     roleName: '操作员',
     permissions: [],
-    permissionKeys: [],
     description: '操作员',
     created_at: '1975-05-08 14:25:12',
     updated_at: '2002-06-13 00:01:38'
@@ -24,7 +22,6 @@ export const roleList = [
     roleId: 3,
     roleName: '审查员',
     permissions: [],
-    permissionKeys: [],
     description: '审查员',
     created_at: '1975-05-08 14:25:12',
     updated_at: '2002-06-13 00:01:38'

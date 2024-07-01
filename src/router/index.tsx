@@ -66,3 +66,5 @@ export const router = [
 
 const createRouter = createBrowserRouter(router)
 export default createRouter
+
+export const staticRoutes = ['/home', '/403', '/404', '/500']

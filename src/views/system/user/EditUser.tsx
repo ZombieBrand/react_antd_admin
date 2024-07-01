@@ -108,7 +108,7 @@ const EditUser = (props: IModalProp<any>) => {
             ))}
           </Select>
         </Form.Item>
-        <Form.Item label='系统角色' name='role'>
+        <Form.Item label='系统角色' name='role' rules={[{ required: true, message: '请选择系统角色' }]}>
           <Select placeholder='请选择角色'>
             {roleOptions.map(item => {
               return (

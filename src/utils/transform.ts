@@ -1,3 +1,4 @@
+import type { TreeDataNode } from 'antd'
 interface Item {
   id: number
   name: string
@@ -38,4 +39,23 @@ export function arrayObjectToTree(arrayObjList: Item[]): ItemNode[] {
   })
 
   return roots
+}
+
+/**
+ * 将菜单列表转换为树状数据结构。
+ *
+ * @param menuList 菜单列表，每个菜单项包含id、name和可能的children属性。
+ * @returns 返回转换后的树状数据结构数组，每个节点包含key、title和children属性。
+ */
+export function menuListToTreeData(menuList: Record<string, any>[], options?: { title: string; key: string }): TreeDataNode[] {
+  const { title = 'menuName', key = 'id' } = options || {}
+  // 使用map遍历菜单列表，将每个菜单项转换为树状数据结构的节点
+  return menuList.map(item => {
+    // 返回转换后的节点对象
+    return {
+      key: item[key], // 节点的唯一标识符，对应菜单项的id
+      title: item[title], // 节点的显示名称，对应菜单项的name
+      children: item.children ? menuListToTreeData(item.children) : [] // 节点的子节点列表，如果菜单项有children，则递归调用本函数转换子菜单
+    }
+  })
 }

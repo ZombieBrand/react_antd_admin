@@ -4,6 +4,6 @@ import request from '@/utils/request'
 export function getPermissionApi() {
   return request.get<{
     menuList: IMenuItem[]
-    permissionList: string[]
+    buttonList: string[]
   }>('/user/getPermissionList')
 }

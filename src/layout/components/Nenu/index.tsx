@@ -1,9 +1,10 @@
 import { useEffect, useState } from 'react'
 import { Menu, ConfigProvider } from 'antd'
-import { useNavigate, useRouteLoaderData, useMatches } from 'react-router-dom'
+import { useNavigate, useRouteLoaderData, useMatches, useLocation } from 'react-router-dom'
 import type { IAuthData, MenuItem } from '@/types/menu'
 import { useRouterStore } from '@/store/modules/router'
-import { getTreeMenu } from '@/utils/router'
+import { getTreeMenu, searchRoute } from '@/utils/router'
+import { router, staticRoutes } from '@/router'
 
 type Props = {
   collapsed: boolean
@@ -17,7 +18,7 @@ export default function SideMenu({ collapsed }: Props) {
   const updateState = useRouterStore(state => state.updateState)
   const matches = useMatches()
   const navigate = useNavigate()
-
+  const { pathname } = useLocation()
   // 菜单点击
   const handleClickMenu = ({ key }: { key: string }) => {
     setSelectedKeys([key])
@@ -37,6 +38,17 @@ export default function SideMenu({ collapsed }: Props) {
     setOpenKeys(pathnames.slice(0, pathnames.length - 1))
     updateState(authLoaderData)
   }, [matches, authLoaderData])
+
+  const route = searchRoute(pathname, router)
+  if (route && route.meta?.auth === false) {
+    // 通过权限
+  } else {
+    // 权限判断
+    if (!authLoaderData.menuPathList.includes(pathname) && !staticRoutes.includes(pathname)) {
+      navigate('/403')
+    }
+  }
+
   return (
     <ConfigProvider
       theme={{

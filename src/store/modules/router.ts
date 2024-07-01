@@ -30,7 +30,7 @@ export const useRouterStore = create<State & Action>()(
         updateMenuList: async () => {
           try {
             const result = await getPermissionApi()
-            const buttonList = result.permissionList
+            const buttonList = result.buttonList
             const menuList = result.menuList
             const menuPathList = getMenuPath(menuList)
             set({ menuList, buttonList, menuPathList })

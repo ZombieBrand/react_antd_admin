@@ -1,6 +1,6 @@
 import type { ActionType, ProColumns } from '@ant-design/pro-components'
 import { ProTable } from '@ant-design/pro-components'
-import { App, Button } from 'antd'
+import { App } from 'antd'
 import { useRef, useState } from 'react'
 import EditMenu from './EditMenu'
 import { IAction } from '@/constant/editType'
@@ -11,6 +11,7 @@ import type { IMenuItem } from '@/types/api/menu'
 import { useTableScrollY } from '@/hook/useTable'
 import toast from 'react-hot-toast'
 import { paginationOptions } from '@/config/table'
+import AuthButton from '@/components/AuthButton'
 
 const MenuManage = () => {
   const { modal } = App.useApp()
@@ -130,15 +131,15 @@ const MenuManage = () => {
       width: 230,
       render: (_, record) => {
         return [
-          <Button type='primary' key='create' onClick={() => handleSubCreate(record)}>
+          <AuthButton auth='menu@create' type='primary' key='create' onClick={() => handleSubCreate(record)}>
             新增
-          </Button>,
-          <Button type='primary' key='edit' onClick={() => handleEdit(record)}>
+          </AuthButton>,
+          <AuthButton auth='menu@edit' type='primary' key='edit' onClick={() => handleEdit(record)}>
             编辑
-          </Button>,
-          <Button type='primary' danger key='delete' onClick={() => handleDel(record)}>
+          </AuthButton>,
+          <AuthButton auth='menu@delete' type='primary' danger key='delete' onClick={() => handleDel(record)}>
             删除
-          </Button>
+          </AuthButton>
         ]
       }
     }
@@ -170,9 +171,9 @@ const MenuManage = () => {
         }}
         headerTitle='菜单列表'
         toolBarRender={() => [
-          <Button type='primary' onClick={handleCreate}>
+          <AuthButton auth='menu@create' type='primary' onClick={handleCreate}>
             新增
-          </Button>
+          </AuthButton>
         ]}
         onLoad={dataSource => {
           setData(() => dataSource)

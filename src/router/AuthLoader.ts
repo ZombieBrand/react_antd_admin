@@ -7,7 +7,7 @@ export default async function AuthLoader() {
   let menuPathList: IAuthData['menuPathList'] = []
   try {
     const data = await getPermissionApi()
-    buttonList = data.permissionList
+    buttonList = data.buttonList
     menuList = data.menuList
     menuPathList = getMenuPath(menuList)
   } catch (error) {
