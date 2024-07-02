@@ -2,7 +2,7 @@
  * 使用以解析.env.development代理配置
  */
 import type { ProxyOptions } from 'vite'
-
+import { Agent } from 'https'
 type ProxyItem = [string, string]
 
 type ProxyList = ProxyItem[]
@@ -29,6 +29,7 @@ export function createProxy(list: ProxyList) {
       changeOrigin: true,
       ws: isWs,
       rewrite: path => path.replace(new RegExp(`^${prefix}`), ''),
+      agent: new Agent({ keepAlive: true, keepAliveMsecs: 20000 }),
       // https is require secure=false
       ...(isHttps ? { secure: false } : {})
     }
